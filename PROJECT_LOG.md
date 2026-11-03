@@ -160,3 +160,25 @@ Observations from group tables:
 - ___ (broker, section, origin: add yours)
 
 Open: formal significance tests (RP4); weekend/month/licence effects to confirm.
+
+## 2026-10-25: Repository
+- Published to GitHub: oraregreg/Customs_Compliance_Risk_Prediction. Commit at each return point.
+
+
+- Chart 1 comes first because the two targets are the business KPIs: how many consignments clear
+outside the target time (26.1%), and how many show a large gap between declared and invoice value
+(18.0%). It also shows the class imbalance: both are minorities, so accuracy would be misleading and
+models are judged against these base rates.
+
+- Chart 2 (02_gap_distribution.png): gap_pct has two separate groups. 3,890 shipments between about
+  -5% and +5%, 856 between about 20% and 50%, and nothing between about 6% and 19%. Threshold of 10%
+  sits in the empty zone, so the target is robust. A spike of about ___ shipments sits at exactly 50%
+  (declared at half the invoice value). Consistent with deliberate or systematic under-declaration;
+  the data shows the pattern, not the intent.
+- Fixed: Seaborn FutureWarning (palette needs hue and legend=False); bar_label must loop over all
+  containers when hue is used.
+
+  - Chart 3 (03_slow_rate_by_port.png): slow rate by port. Alexandria, Mombasa, Lagos and Casablanca
+  (about 700 shipments each) run 30% to 34%, against 13% to 21% for the other eight; overall rate 26.1%.
+  Port looks like a strong delay feature. Mombasa (30.7%) and Mombasa ICD (20.8%) differ by 10 points,
+  supporting keeping them separate. Significance test pending (RP4).
