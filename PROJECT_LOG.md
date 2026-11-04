@@ -178,7 +178,14 @@ models are judged against these base rates.
 - Fixed: Seaborn FutureWarning (palette needs hue and legend=False); bar_label must loop over all
   containers when hue is used.
 
-  - Chart 3 (03_slow_rate_by_port.png): slow rate by port. Alexandria, Mombasa, Lagos and Casablanca
+- Chart 3 (03_slow_rate_by_port.png): slow rate by port. Alexandria, Mombasa, Lagos and Casablanca
   (about 700 shipments each) run 30% to 34%, against 13% to 21% for the other eight; overall rate 26.1%.
   Port looks like a strong delay feature. Mombasa (30.7%) and Mombasa ICD (20.8%) differ by 10 points,
   supporting keeping them separate. Significance test pending (RP4).
+
+- Chart 4 (04a, 04b, 04c): slow rate by broker, HS section and country of origin.
+  Broker: about 19% (Agility) to 31% (Panalpina); DHL (largest, over 2,500 shipments) at 29%. 
+  Section: narrow, about 20% to 28%; weak signal. Origin (29 countries after the case fix): about 17%
+  (Kenya) to 32% (Vietnam); China, India, Turkey, Vietnam and Thailand all in the top ten.
+  Group sizes vary widely, so small origins are not reliable. Associations only; overlap with port and
+  broker to be separated by models. Tests at RP4.
