@@ -1,0 +1,15 @@
+name: customs-predictive
+channels:
+  - defaults
+dependencies:
+  - pandas
+  - numpy
+  - ipykernel
+  - python=3.11
+  - jupyter
+  - openpyxl
+  - matplotlib
+  - seaborn
+  - plotly
+  - python-kaleido
+prefix: C:\Users\Greg\anaconda3\envs\customs-predictive
