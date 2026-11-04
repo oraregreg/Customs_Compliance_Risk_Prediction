@@ -213,3 +213,15 @@ models are judged against these base rates.
   of everything. gap_pct is mechanically tied to value columns.
 - Decisions: duty and tax stay out of both models (redundant with declared value). Open: test dropping
   invoice_value_usd or declared_value_usd from the delay model at RP8 (r = 0.96).
+
+- Chart 8 (08_slow_rate_by_day.png): slow rate by day of entry. Saturday (~31%) and Sunday (~30%) are above
+  the 26.1% average; weekdays 22% to 27%, within chance. Monday (~27%) is near average, not elevated like
+  the weekend. Backlog hypothesis for Monday noted, untested. entry_is_weekend captures the signal; no
+  separate weekday feature needed.
+
+## 2026-11-04: RP2 complete (03_EDA.ipynb, images/)
+Eight exploratory charts built from customs_features.csv. Main findings: port and weekend drive delay;
+HS section, supplier and origin drive discrepancy; numeric features add little; value, tax and duty are
+near-collinear. Corrected a cleaning flaw found through chart 4 (country_origin case variants).
+Next: significance tests and feature shortlist (RP4).
+
