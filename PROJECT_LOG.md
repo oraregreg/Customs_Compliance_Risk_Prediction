@@ -189,3 +189,27 @@ models are judged against these base rates.
   (Kenya) to 32% (Vietnam); China, India, Turkey, Vietnam and Thailand all in the top ten.
   Group sizes vary widely, so small origins are not reliable. Associations only; overlap with port and
   broker to be separated by models. Tests at RP4.
+
+- Chart 5 (05a to 05d): high_discrepancy rate (overall 18.0%) by broker, HS section, supplier, origin.
+  Predicted broker would show the biggest spread; it was the smallest (~7 points). Origin has the widest
+  spread (~17 points: China ~26% to South Korea ~9%), but the lowest bars rest on small groups.
+  Section ~15 points (Base metals ~28%, Vehicles ~25%, Machinery ~20%, Plastics and rubber ~13%).
+  Supplier ~13 points: PlastiPack ~26.5% and ChemCorp ~22% highest.
+  China, Vietnam, Turkey and Thailand elevated; India near average (~17%) despite being high for delay.
+  Port weak for discrepancy. Delay and discrepancy have different drivers, so each model gets its own
+  feature list. Significance tests at RP4.
+
+- Chart 6 (06_numeric_by_slow.png): weight, volume, declared value and broker fee by slow_clearance.
+  Boxes overlap almost completely. Medians: weight 2,478 vs 2,516 kg; volume 10.2 vs 9.6 m3; broker fee
+  $240 vs $237. Declared value shows a small shift ($72.4k vs $75.9k median; means $72.8k vs $76.6k,
+  about 2.7 standard errors). Top-decile declared value: 28.4% slow vs 25.8% otherwise (about 1.3 standard
+  errors, not convincing). Numeric features alone carry little signal for delay; categorical and flag
+  features look stronger. Tests at RP4.
+
+- Chart 7 (07_correlation_heatmap.png): numeric correlations. Declared value, invoice value and tax are
+  near-collinear (0.96 to 0.98); duty 0.69 to 0.77 with them, consistent with an ad valorem regime where
+  duty varies by tariff. Tax is slightly closer to declared (0.98) than invoice (0.96), so my earlier
+  "invoice-based" reading is not supported; evidence is mixed. Weight, volume and broker fee are independent
+  of everything. gap_pct is mechanically tied to value columns.
+- Decisions: duty and tax stay out of both models (redundant with declared value). Open: test dropping
+  invoice_value_usd or declared_value_usd from the delay model at RP8 (r = 0.96).
