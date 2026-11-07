@@ -26,6 +26,6 @@ Progress, decisions and findings are logged in PROJECT_LOG.md.
   and supplier, and not by port. Origin differences on the smaller origins are noisy.
 - Weight, volume and broker fee show almost no link to slow clearance.
 
-![Port volume vs slow rate](images\12_port_volume_vs_slow.png)
+![Port volume vs slow rate](images/12_port_volume_vs_slow.png)
 
 ![Discrepancy rate by origin](images/10_origin_discrepancy_map.png)
