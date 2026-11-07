@@ -225,3 +225,53 @@ HS section, supplier and origin drive discrepancy; numeric features add little; 
 near-collinear. Corrected a cleaning flaw found through chart 4 (country_origin case variants).
 Next: significance tests and feature shortlist (RP4).
 
+## 2026-11-07: RP3, interactive charts and maps
+Notebook: `03b_Interactive_Maps.ipynb`. Built with plotly.express only (Cufflinks skipped: dated
+and often breaks with current pandas). plotly added to `environment.yml`.
+
+### Charts built
+- Chart 9: interactive slow rate by port, hover shows shipment count.
+- Chart 10: origin choropleths for slow rate and discrepancy rate, shared colour scale 0 to 0.35 so
+  the two maps are comparable.
+- Chart 11: port map, bubble size = shipments, colour = slow rate.
+- Chart 12: port volume vs slow rate scatter.
+- Exported: `images/10_origin_discrepancy_map.html`, `images/12_port_volume_vs_slow.html` (plus PNGs).
+
+### Data decisions
+- ISO-3 lookup for the 29 origins. Checks: none unmapped, all codes 3 letters, no duplicates.
+  Cross-checked against Plotly's gapminder codes; UAE (ARE) is not in that table, code taken from
+  ISO 3166. Unmapped origins would vanish from a map silently, hence the assert.
+- Port coordinates are approximate (city or port level). Source checked: [name the map source].
+- MOMBASA ICD is a label in the data, not a physical site. For demonstration it is plotted at
+  Mombasa Town; MOMBASA is plotted at Kilindini harbour. PORT ELIZABETH (now Gqeberha) keeps the
+  dataset label so it matches the data.
+
+### Findings (exploratory, not yet tested)
+- Port: the four busiest ports (Alexandria, Mombasa, Lagos, Casablanca, about 700 shipments each)
+  clear slowly 30% to 34% of the time. The other eight (about 200 to 260 each) run 13% to 21%.
+  Spread about 21 points, wider than origin (about 15). Overall rate about 26%.
+- Origin, discrepancy: 9% to 26% across 29 origins. Highest China (26%), Vietnam (22%),
+  Turkey (22%), Thailand (21%), all about 390 shipments each. Lowest South Korea (9%), Uganda,
+  Japan (about 12%). India is about average (17%).
+- Origin, slow clearance: 17% to 32%. Highest Vietnam, India, China (31% to 32%); Ethiopia,
+  Egypt, Uganda also high but on only 81 to 115 shipments each, so treat as leads.
+- The two targets rank origins differently (e.g. Uganda high on slow, low on discrepancy), so
+  delay risk and valuation risk are separate stories.
+
+### Concepts learned
+- px.bar, px.choropleth, px.scatter_geo, px.scatter; hover_data, range_color, size_max.
+- Lookup via merge and a dictionary, with an assert to catch unmapped rows.
+- Fixed colour scales for fair comparison; write_html with include_plotlyjs="cdn".
+- Colours on a map show pattern only; exact values come from the table. I misread several
+  countries from the colours on the first pass and corrected from the table.
+
+### Open items for RP4
+- Test whether busier ports are slower because of congestion or because of product or broker mix.
+- Test origin differences properly (29 groups, small counts, chance extremes expected).
+- Check whether origin effects survive once product section and broker are considered.
+- Monday backlog hypothesis from chart 8 still untested.
+
+- Port coordinates: looked up per city and compared with my initial values; all differences under
+  0.05 degrees. Source: [name the site you used]. Mombasa at the port, Mombasa ICD at Mombasa Town
+  for demonstration (the Nairobi Inland Container Depot was considered and rejected, because the
+  label says Mombasa and it would sit on top of Nairobi). Nairobi at the airport-area point.
